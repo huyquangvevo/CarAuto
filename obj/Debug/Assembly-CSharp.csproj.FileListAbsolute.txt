@@ -3,11 +3,8 @@ D:\ICT\Xu Ly Thong Tin Mo\CarAuto\Temp\bin\Debug\Assembly-CSharp.pdb
 D:\ICT\Xu Ly Thong Tin Mo\CarAuto\Temp\bin\Debug\Boo.Lang.dll
 D:\ICT\Xu Ly Thong Tin Mo\CarAuto\Temp\bin\Debug\mscorlib.dll
 D:\ICT\Xu Ly Thong Tin Mo\CarAuto\Temp\bin\Debug\Unity.Locator.dll
-D:\ICT\Xu Ly Thong Tin Mo\CarAuto\Temp\bin\Debug\Unity.PackageManagerUI.Editor.dll
 D:\ICT\Xu Ly Thong Tin Mo\CarAuto\Temp\bin\Debug\Unity.TextMeshPro.dll
-D:\ICT\Xu Ly Thong Tin Mo\CarAuto\Temp\bin\Debug\Unity.TextMeshPro.Editor.dll
 D:\ICT\Xu Ly Thong Tin Mo\CarAuto\Temp\bin\Debug\UnityEditor.dll
-D:\ICT\Xu Ly Thong Tin Mo\CarAuto\Temp\bin\Debug\UnityEditor.StandardEvents.dll
 D:\ICT\Xu Ly Thong Tin Mo\CarAuto\Temp\bin\Debug\UnityEngine.AccessibilityModule.dll
 D:\ICT\Xu Ly Thong Tin Mo\CarAuto\Temp\bin\Debug\UnityEngine.AIModule.dll
 D:\ICT\Xu Ly Thong Tin Mo\CarAuto\Temp\bin\Debug\UnityEngine.Analytics.dll
@@ -159,3 +156,8 @@ D:\ICT\Xu Ly Thong Tin Mo\CarAuto\Temp\bin\Debug\UnityEngine.SpatialTracking.xml
 D:\ICT\Xu Ly Thong Tin Mo\CarAuto\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
 D:\ICT\Xu Ly Thong Tin Mo\CarAuto\obj\Debug\Assembly-CSharp.dll
 D:\ICT\Xu Ly Thong Tin Mo\CarAuto\obj\Debug\Assembly-CSharp.pdb
+D:\ICT\Xu Ly Thong Tin Mo\CarAuto\Temp\bin\Debug\Cinemachine.dll
+D:\ICT\Xu Ly Thong Tin Mo\CarAuto\Temp\bin\Debug\com.unity.cinemachine.editor.dll
+D:\ICT\Xu Ly Thong Tin Mo\CarAuto\Temp\bin\Debug\Unity.PackageManagerUI.Editor.dll
+D:\ICT\Xu Ly Thong Tin Mo\CarAuto\Temp\bin\Debug\Unity.TextMeshPro.Editor.dll
+D:\ICT\Xu Ly Thong Tin Mo\CarAuto\Temp\bin\Debug\UnityEditor.StandardEvents.dll

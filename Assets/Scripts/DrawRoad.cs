@@ -24,6 +24,8 @@ public class DrawRoad : MonoBehaviour {
 		for (int i = 0; i < listSegment.Count; i++) {
 			Debug.Log ("Point: " + i + " : " + listSegment [i].startPoint + " - " + listSegment [i].endPoint);
 		}
+
+		Debug.Log (Directory.GetCurrentDirectory()+"\\Data\\map.txt");
 			
 	}
 	
@@ -34,7 +36,7 @@ public class DrawRoad : MonoBehaviour {
 
 	void initMap(){
 
-		StreamReader sr = new StreamReader(Application.dataPath+"/Data/map.txt");
+		StreamReader sr = new StreamReader(Directory.GetCurrentDirectory() +"\\Data\\map.txt");
 	
 		string lineSeg;
 		while ((lineSeg = sr.ReadLine ()) != null) {

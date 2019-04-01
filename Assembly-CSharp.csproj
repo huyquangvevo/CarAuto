@@ -55,10 +55,9 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\DrawLine.cs" />
      <Compile Include="Assets\Scripts\DrawRoad.cs" />
+     <Compile Include="Assets\Scripts\Drive.cs" />
      <Compile Include="Assets\Scripts\Map.cs" />
      <Compile Include="Assets\Scripts\Segment.cs" />
-     <None Include="Assets\Data\map.txt" />
-     <None Include="Assets\Data\nhap.txt" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>D:/ICT/Xu Ly Thong Tin Mo/CarAuto/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>
@@ -70,6 +69,12 @@
  </Reference>
  <Reference Include="Unity.TextMeshPro">
  <HintPath>D:/ICT/Xu Ly Thong Tin Mo/CarAuto/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ </Reference>
+ <Reference Include="Cinemachine">
+ <HintPath>D:/ICT/Xu Ly Thong Tin Mo/CarAuto/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
+ </Reference>
+ <Reference Include="com.unity.cinemachine.editor">
+ <HintPath>D:/ICT/Xu Ly Thong Tin Mo/CarAuto/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files (x86)/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
