@@ -53,11 +53,30 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\BezierPathCreator\Core\Scripts\Objects\BezierPath.cs" />
+     <Compile Include="Assets\BezierPathCreator\Core\Scripts\Objects\EndOfPathInstruction.cs" />
+     <Compile Include="Assets\BezierPathCreator\Core\Scripts\Objects\Follower.cs" />
+     <Compile Include="Assets\BezierPathCreator\Core\Scripts\Objects\GlobalDisplaySettings.cs" />
+     <Compile Include="Assets\BezierPathCreator\Core\Scripts\Objects\MinMax3D.cs" />
+     <Compile Include="Assets\BezierPathCreator\Core\Scripts\Objects\PathCreator.cs" />
+     <Compile Include="Assets\BezierPathCreator\Core\Scripts\Objects\PathCreatorData.cs" />
+     <Compile Include="Assets\BezierPathCreator\Core\Scripts\Objects\PathSpace.cs" />
+     <Compile Include="Assets\BezierPathCreator\Core\Scripts\Objects\VertexPath.cs" />
+     <Compile Include="Assets\BezierPathCreator\Core\Scripts\Utility\CubicBezierUtility.cs" />
+     <Compile Include="Assets\BezierPathCreator\Core\Scripts\Utility\MathUtility.cs" />
+     <Compile Include="Assets\BezierPathCreator\Core\Scripts\Utility\VertexPathUtility.cs" />
+     <Compile Include="Assets\BezierPathCreator\Examples\Scripts\PathFollower.cs" />
+     <Compile Include="Assets\BezierPathCreator\Examples\Scripts\PathFromObjects.cs" />
+     <Compile Include="Assets\BezierPathCreator\Examples\Scripts\PathSceneTool.cs" />
+     <Compile Include="Assets\BezierPathCreator\Examples\Scripts\RoadMeshCreator.cs" />
      <Compile Include="Assets\Scripts\DrawLine.cs" />
      <Compile Include="Assets\Scripts\DrawRoad.cs" />
      <Compile Include="Assets\Scripts\Drive.cs" />
      <Compile Include="Assets\Scripts\Map.cs" />
      <Compile Include="Assets\Scripts\Segment.cs" />
+ <Reference Include="Cinemachine">
+ <HintPath>D:/ICT/Xu Ly Thong Tin Mo/CarAuto/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>D:/ICT/Xu Ly Thong Tin Mo/CarAuto/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>
@@ -67,14 +86,11 @@
  <Reference Include="Unity.PackageManagerUI.Editor">
  <HintPath>D:/ICT/Xu Ly Thong Tin Mo/CarAuto/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
  </Reference>
- <Reference Include="Unity.TextMeshPro">
- <HintPath>D:/ICT/Xu Ly Thong Tin Mo/CarAuto/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
- </Reference>
- <Reference Include="Cinemachine">
- <HintPath>D:/ICT/Xu Ly Thong Tin Mo/CarAuto/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
- </Reference>
  <Reference Include="com.unity.cinemachine.editor">
  <HintPath>D:/ICT/Xu Ly Thong Tin Mo/CarAuto/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.TextMeshPro">
+ <HintPath>D:/ICT/Xu Ly Thong Tin Mo/CarAuto/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files (x86)/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
