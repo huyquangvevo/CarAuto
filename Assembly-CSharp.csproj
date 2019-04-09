@@ -72,6 +72,7 @@
      <Compile Include="Assets\Scripts\DrawLine.cs" />
      <Compile Include="Assets\Scripts\DrawRoad.cs" />
      <Compile Include="Assets\Scripts\Drive.cs" />
+     <Compile Include="Assets\Scripts\Drive2.cs" />
      <Compile Include="Assets\Scripts\Map.cs" />
      <Compile Include="Assets\Scripts\Segment.cs" />
  <Reference Include="Cinemachine">

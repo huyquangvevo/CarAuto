@@ -10,11 +10,12 @@ public class Drive : MonoBehaviour {
 	void Start () {
 		rb = GetComponent<Rigidbody2D> ();
 		driveCar ();
+		Debug.Log (transform.right);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		getEdge ();
 	}
 
 	void driveCar(){
@@ -24,18 +25,40 @@ public class Drive : MonoBehaviour {
 	//	this.transform.rotation = Quaternion.Euler (new Vector3 (0, 0, 135));
 	}
 
-	void OnCollisionStay2D(Collision2D col){
+	void OnCollisionStay2(Collision2D col){
 		Debug.Log ("Contact: " + col.contactCount);
 		Debug.Log ("Va Cham " + col.contacts.Length);
-		for (int i = 0; i < col.contacts.Length; i++) {
-			Debug.Log ("Diem va cham " + i + " " + col.GetContact(i).point);
+	//	for (int i = 0; i < col.contacts.Length; i++) {
+	//		Debug.Log ("Diem va cham " + i + " " + col.GetContact(i).point);
+	//	}
+
+		foreach (ContactPoint2D c in col.contacts) {
+			Debug.Log ("Diem va cham " + c.point);
 		}
+
 		//Debug.Log ("Diem va cham: " + col.GetContact(0).point);
 		//if(col.contacts.Length>1)
 		//	Debug.Log ("Diem va cham 2: " + col.GetContact(1).point);
 	}
 
-	void OnTriggerEnter2D(Collider2D coli){
+	void OnTriggerEnter2(Collider2D coli){
 		Debug.Log ("Cham Trigger");
+	}
+
+	void getEdge(){
+		Vector3 posRayLeft = new Vector3 (transform.position.x + 0.3f, transform.position.y + 0.2f, transform.position.z);
+		Vector3 posRayRight = new Vector3 (transform.position.x + 0.3f, transform.position.y - 0.2f, transform.position.z);
+
+		RaycastHit2D hitLeft = Physics2D.Raycast (posRayLeft, -transform.right);
+		RaycastHit2D hitRight = Physics2D.Raycast (posRayRight, transform.right);
+
+		if (hitLeft != null || hitRight != null) {
+			Debug.Log ("InRoad");
+			Debug.Log ("Hit Left: " + hitLeft.distance);
+			Debug.Log ("Hit Right: " + hitRight.distance);
+		} else {
+			Debug.Log ("***** OutRoad *****"); 
+		}
+
 	}
 }
