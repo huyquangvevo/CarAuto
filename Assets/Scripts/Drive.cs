@@ -5,59 +5,74 @@ using UnityEngine;
 public class Drive : MonoBehaviour {
 
 	public Rigidbody2D rb;
+	public float speed;
 
-	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D> ();
-		driveCar ();
-		Debug.Log (transform.right);
+	//	driveCar ();
+
+		Debug.Log ("Mo: " + Steerage.clarify (0.35f));
 	}
 	
-	// Update is called once per frame
 	void Update () {
-		getEdge ();
+		getSteering ();
+		getLightStatus ();
 	}
 
 	void driveCar(){
-	//	Vector2 sp = new Vector2 (-5, 0);
-	//	Vector2 ep = new Vector2 (5, 1);
-		this.rb.velocity = new Vector2 (0.2f,0);
-	//	this.transform.rotation = Quaternion.Euler (new Vector3 (0, 0, 135));
+
+		this.rb.velocity = new Vector2 (1f,0f)*speed;
 	}
 
-	void OnCollisionStay2(Collision2D col){
-		Debug.Log ("Contact: " + col.contactCount);
-		Debug.Log ("Va Cham " + col.contacts.Length);
-	//	for (int i = 0; i < col.contacts.Length; i++) {
-	//		Debug.Log ("Diem va cham " + i + " " + col.GetContact(i).point);
-	//	}
 
-		foreach (ContactPoint2D c in col.contacts) {
-			Debug.Log ("Diem va cham " + c.point);
-		}
-
-		//Debug.Log ("Diem va cham: " + col.GetContact(0).point);
-		//if(col.contacts.Length>1)
-		//	Debug.Log ("Diem va cham 2: " + col.GetContact(1).point);
-	}
-
-	void OnTriggerEnter2(Collider2D coli){
-		Debug.Log ("Cham Trigger");
-	}
-
-	void getEdge(){
+	float getDeviation(){
 		Vector3 posRayLeft = new Vector3 (transform.position.x + 0.3f, transform.position.y + 0.2f, transform.position.z);
 		Vector3 posRayRight = new Vector3 (transform.position.x + 0.3f, transform.position.y - 0.2f, transform.position.z);
 
 		RaycastHit2D hitLeft = Physics2D.Raycast (posRayLeft, -transform.right);
 		RaycastHit2D hitRight = Physics2D.Raycast (posRayRight, transform.right);
 
-		if (hitLeft != null || hitRight != null) {
+		if (hitLeft && hitRight) {
 			Debug.Log ("InRoad");
 			Debug.Log ("Hit Left: " + hitLeft.distance);
 			Debug.Log ("Hit Right: " + hitRight.distance);
+			return (hitLeft.distance) / (hitLeft.distance + hitRight.distance);
 		} else {
-			Debug.Log ("***** OutRoad *****"); 
+			Debug.Log ("***** OutRoad *****");
+			return 0f;
+		}
+	}
+
+	void getSteering(){
+		float x = getDeviation ();
+		if (x == 0f) {
+			transform.rotation = Quaternion.Euler (new Vector3 (0, 0, -90));
+			return;		
+		}
+		float st = Steerage.clarify (x);
+		Debug.Log ("Steering: " + st);
+		float direction = -(st - 0.5f) * 180f;
+		transform.rotation = Quaternion.Euler(new Vector3 (0, 0, -90 + direction));
+		Vector2 v;
+		if (st < 0.5f)
+			v = new Vector2 (1f * Mathf.Tan (Mathf.PI * st), 1f) ;
+		else if (st > 0.5f)
+			v = new Vector2 (-1f * Mathf.Tan (Mathf.PI * st), -1f);
+		else
+			v = new Vector2 (1f, 1f);
+		speed = Mathf.Abs (v.y / (3*v.x));
+		Debug.Log ("Vector velocity: " + v);
+		rb.velocity = v*speed;
+	}
+
+	void getLightStatus(){
+		Vector3 posRayUp = new Vector3 (transform.position.x, transform.position.y + 0.2f, transform.position.z);
+
+		RaycastHit2D hitUp = Physics2D.Raycast (posRayUp, transform.up);
+		if(hitUp)
+		if (hitUp.collider.gameObject.tag == "TrafficLight") {
+			Debug.Log ("Distance to TrafficLight: " + hitUp.distance);
+			Physics2D.IgnoreCollision (hitUp.collider,GetComponent<Collider2D>());
 		}
 
 	}

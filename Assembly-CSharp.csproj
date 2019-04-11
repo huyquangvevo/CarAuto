@@ -69,12 +69,11 @@
      <Compile Include="Assets\BezierPathCreator\Examples\Scripts\PathFromObjects.cs" />
      <Compile Include="Assets\BezierPathCreator\Examples\Scripts\PathSceneTool.cs" />
      <Compile Include="Assets\BezierPathCreator\Examples\Scripts\RoadMeshCreator.cs" />
-     <Compile Include="Assets\Scripts\DrawLine.cs" />
-     <Compile Include="Assets\Scripts\DrawRoad.cs" />
+     <Compile Include="Assets\Scripts\Deviation.cs" />
+     <Compile Include="Assets\Scripts\Distance.cs" />
      <Compile Include="Assets\Scripts\Drive.cs" />
-     <Compile Include="Assets\Scripts\Drive2.cs" />
-     <Compile Include="Assets\Scripts\Map.cs" />
-     <Compile Include="Assets\Scripts\Segment.cs" />
+     <Compile Include="Assets\Scripts\LightStatus.cs" />
+     <Compile Include="Assets\Scripts\Steerage.cs" />
  <Reference Include="Cinemachine">
  <HintPath>D:/ICT/Xu Ly Thong Tin Mo/CarAuto/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
  </Reference>
