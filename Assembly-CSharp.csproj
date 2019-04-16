@@ -73,7 +73,11 @@
      <Compile Include="Assets\Scripts\Distance.cs" />
      <Compile Include="Assets\Scripts\Drive.cs" />
      <Compile Include="Assets\Scripts\LightStatus.cs" />
+     <Compile Include="Assets\Scripts\Speed.cs" />
      <Compile Include="Assets\Scripts\Steerage.cs" />
+     <Compile Include="Assets\Scripts\TimeLight.cs" />
+     <Compile Include="Assets\Scripts\TrafficLightController.cs" />
+     <None Include="Assets\Fonts\readme.txt" />
  <Reference Include="Cinemachine">
  <HintPath>D:/ICT/Xu Ly Thong Tin Mo/CarAuto/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
  </Reference>
