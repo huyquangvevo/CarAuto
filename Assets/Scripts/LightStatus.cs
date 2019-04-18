@@ -17,7 +17,7 @@ public static class LightStatus {
 	public static float uLG(float x){
 		if (x < 0.33 || x > 0.542) {
 			return 0;
-		} else if(x >= 0.33 && x <= 0.417) {
+		} else if (x >= 0.33 && x <= 0.417) {
 			return 11.5f * x - 3.795f;
 		} else {
 			return -8f * x + 4.336f;
@@ -25,19 +25,19 @@ public static class LightStatus {
 	}
 
 	public static float uY(float x){
-		if (x < 0.458 || x > 0.708) {
+		if (x > 0.708 || x < 0.458) {
 			return 0;
 		} else if (x >= 0.458 && x <= 0.542) {
-			return 11.9f*x - 5.45f;
-		} else {
+			return 11.9f * x - 5.45f;
+		}  else {
 			return -6f * x + 4.25f; 
 		}
 	}
 
 	public static float uR(float x){
-		if (x < 0.625 || x > 0.9) {
+		if (x < 0.625 || x > 0.9 ) {
 			return 0;
-		} else if (x >= 0 && x <= 0.67) {
+		} else if (x >= 0.625 && x <= 0.67) {
 			return 22.22f * x - 13.89f;
 		} else if (x > 0.83 && x <= 0.9) {
 			return -14.29f * x + 12.86f;

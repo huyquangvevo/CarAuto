@@ -20,10 +20,13 @@ public class TimeLight  {
 		};
 		return true;
 	}
-
+		
+	public int getDownTime(){
+		return this.threshold - this.countTime;
+	}
 	public float getRatio(){
 		
-		return (float)this.countTime / (float)this.threshold;
+		return ((float) this.threshold - (float)this.countTime) / (float)this.threshold;
 
 	}
 

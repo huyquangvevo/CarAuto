@@ -5,18 +5,18 @@ using UnityEngine;
 public class Drive : MonoBehaviour {
 
 	public Rigidbody2D rb;
-	public float speed;
+	public float speed = 2f;
 
 	void Start () {
 		rb = GetComponent<Rigidbody2D> ();
-	//	driveCar ();
+		//driveCar ();
 		Physics2D.IgnoreLayerCollision(10,5,true);
 		Debug.Log ("Mo: " + Steerage.clarify (0.35f));
 		Debug.Log ("Physic : " + Physics2D.DefaultRaycastLayers);
 	}
 	
 	void Update () {
-		steer();
+	//	steer(getDeviation());
 		controlSpeed ();
 	}
 
@@ -44,14 +44,12 @@ public class Drive : MonoBehaviour {
 		}
 	}
 
-	void steer(){
-		float x = getDeviation ();
+	void steer(float x){
 		if (x == 0f) {
 			transform.rotation = Quaternion.Euler (new Vector3 (0, 0, -90));
 			return;		
 		}
 		float st = Steerage.clarify (x);
-		//Debug.Log ("Steering: " + st);
 		float direction = -(st - 0.5f) * 180f;
 		transform.rotation = Quaternion.Euler(new Vector3 (0, 0, -90 + direction));
 		Vector2 v;
@@ -61,26 +59,41 @@ public class Drive : MonoBehaviour {
 			v = new Vector2 (-1f * Mathf.Tan (Mathf.PI * st), -1f);
 		else
 			v = new Vector2 (1f, 1f);
-		speed = Mathf.Abs (v.y / (2*v.x));
-		//Debug.Log ("Vector velocity: " + v);
-		rb.velocity = v*speed;
+//		Debug.Log ("Vector velocity steer: " + v);
+		//v = v*this.speed;
+		v = v*Mathf.Abs (v.y / (2*v.x));
+		//this.speed *= Mathf.Abs (this.speed.y / (2*this.speed.x));
+	//	Debug.Log ("Vector velocity steer: " + v);
+	//	rb.velocity = v;
+		rb.velocity = v*this.speed*1.5f;
 	}
 
 	void controlSpeed(){
 		Vector3 posRayUp = new Vector3 (transform.position.x, transform.position.y + 0.2f, transform.position.z);
 
 		RaycastHit2D hitUp = Physics2D.Raycast (posRayUp, transform.up);
+		float dev = getDeviation ();
 
-		if(hitUp)
-		if (hitUp.collider.gameObject.tag == "TrafficLight") {
+		this.speed = Mathf.Abs (Speed.clarify (1, 0f, 10f, dev));
 
-			TrafficLightController traffic = (TrafficLightController) hitUp.collider.gameObject.GetComponent<TrafficLightController> ();
-			
-			if(hitUp.distance < 0.5f)
-				hitUp.collider.enabled = false;
-		}
+		if (hitUp) {
+			if (hitUp.collider.gameObject.tag == "TrafficLight") {
 
+				TrafficLightController traffic = (TrafficLightController)hitUp.collider.gameObject.GetComponent<TrafficLightController> ();
+				float dis = hitUp.distance;
+				Debug.Log ("Distance: "+dis);
+				this.speed = Mathf.Abs (Speed.clarify (traffic.getIdL (), traffic.getRatioTime (), dis, dev));
+
+			//	Debug.Log ("Speed Controll: " + this.speed);
+
+			}
+		};
+
+	//	Debug.Log ("Speed Controll: " + this.speed);
+
+		steer (dev);
 	}
-		
+
+
 
 }

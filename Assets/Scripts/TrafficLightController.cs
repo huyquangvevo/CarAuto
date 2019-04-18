@@ -11,12 +11,13 @@ public class TrafficLightController : MonoBehaviour {
 	public int[] startPoint;
 	public Color[] colorLights = {Color.red,Color.green,Color.yellow};
 	public int idL = 0;
+	int sumTimeLight = 0;
 	// Use this for initialization
 	void Start () {
 		timeLights [0] = new TimeLight (thresholdLight[0], startPoint[0]);
 		timeLights [1] = new TimeLight (thresholdLight[1], startPoint[1]);
 		timeLights [2] = new TimeLight (thresholdLight[2], startPoint[2]);
-
+		sumTimeLight += timeLights [0].threshold + timeLights [1].threshold + timeLights [2].threshold;
 		StartCoroutine (ControllLight ());
 	}
 	
@@ -29,7 +30,14 @@ public class TrafficLightController : MonoBehaviour {
 	}
 
 	public float getRatioTime(){
-		return timeLights [idL].getRatio ();
+		if (idL == 0) {
+			return (float)(timeLights [0].getDownTime() + timeLights [1].threshold + timeLights [2].threshold) / (float)sumTimeLight;
+		} else if (idL == 1) {
+			return (float)(timeLights [1].getDownTime()) / (float)sumTimeLight;
+		} else {
+			return (float)(timeLights [1].threshold + timeLights [2].getDownTime()) / (float)sumTimeLight;
+		}
+		//return timeLights [idL].getRatio ();
 	}
 
 	IEnumerator ControllLight(){
