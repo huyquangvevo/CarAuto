@@ -2,7 +2,7 @@ WindowsStandalone
 PlayerPath?
 D:/ICT/Xu Ly Thong Tin Mo/CarAuto.exe
 SceneListBegin?
-Assets/Scenes/Level1.unity
+Assets/Scenes/Level2.unity
 SceneListEnd?
 8ef0c7ee81abe4b89a27b3a0d1ce3b03 Cinemachine.dll:Cinemachine.CinemachineStateDrivenCamera
 c422dd62785a6d0afa870fbd111886ce Unity.TextMeshPro.dll:TMPro.TMP_SelectionCaret
@@ -137,6 +137,7 @@ dfd33ff9ae3ce8d7ca1f22b475ec2387 UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 f16835701e71dd5d6fb1fed4b7aff1d8 Unity.TextMeshPro.dll:TMPro.TMP_Asset
 9b4e138099a8dac7664daf7cb675a660 Cinemachine.dll:Cinemachine.CinemachineOrbitalTransposer
 769bc992ca1ae8693b0c56dc15e4af35 Cinemachine.dll:Cinemachine.CinemachineTriggerAction
+d46bf1e1fb64f8b49c99766096dee0f0 Assembly-CSharp.dll:.TrafficLightController
 066991c9397f6bd41d0e5d560552a675 Cinemachine.dll:Cinemachine.CinemachineComposer
 a1c5f539f59fa6dba77c44df00f3e7eb Assembly-CSharp.dll:PathCreation.Examples.PathFromObjects
 964188dcc9c94a32ddc7bbabd36a44c1 Cinemachine.dll:Cinemachine.CinemachineDollyCart
