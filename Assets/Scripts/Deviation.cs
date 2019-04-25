@@ -6,9 +6,9 @@ public static class Deviation {
 
 	public static float uFL(float x){
 		if (x < 0.25) {
-			return 1;
+			return 1f;
 		} else if (x > 0.4) {
-			return 0;
+			return 0f;
 		} else {
 			return -6.67f * x + 2.67f;
 		}
@@ -16,11 +16,11 @@ public static class Deviation {
 
 	public static float uL(float x){
 		if (x < 0.25f || x > 0.5)
-			return 0;
+			return 0f;
 		else if (x >= 0.25 && x <= 0.4) {
 			return 6.67f * x - 1.67f;
 		} else {
-			return -10f * x + 5;
+			return -10f * x + 5f;
 		}
 	}
 
@@ -28,29 +28,29 @@ public static class Deviation {
 		if (x < 0.4 || x > 0.6) {
 			return 0;
 		} else if (x >= 0.4 && x < 0.5) {
-			return 10f * x - 4;
+			return 10f * x - 4f;
 		} else {
-			return 10f * x + 6;
+			return -10f * x + 6f;
 		}
 	}
 
 	public static float uR(float x){
 		if (x < 0.5 || x > 0.75) {
-			return 0;
+			return 0f;
 		} else if (x >= 0.5 && x <= 0.6) {
-			return 10f * x - 5;
+			return 10f * x - 5f;
 		} else {
-			return -6.67f * x + 5;
+			return -6.67f * x + 5f;
 		}
 	}
 
 	public static float uFR(float x){
 		if (x < 0.6) {
-			return 0;
+			return 0f;
 		} else if (x >= 0.75) {
-			return 1;
+			return 1f;
 		} else {
-			return 6.67f * x - 4;
+			return 6.67f * x - 4f;
 		}
 	}
 }

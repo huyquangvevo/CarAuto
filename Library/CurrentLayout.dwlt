@@ -45,7 +45,7 @@ MonoBehaviour:
   m_MinSize: {x: 683, y: 492}
   m_MaxSize: {x: 14004, y: 14042}
   vertical: 0
-  controlID: 82
+  controlID: 9
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -209,7 +209,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 492}
   m_MaxSize: {x: 10002, y: 14042}
   vertical: 1
-  controlID: 83
+  controlID: 10
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -233,7 +233,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 221}
   m_MaxSize: {x: 8006, y: 4021}
   vertical: 0
-  controlID: 84
+  controlID: 11
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -323,20 +323,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Sprites
+    - Assets/Scripts
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Sprites
+  - Assets/Scripts
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\ICT\Xu Ly Thong Tin Mo\CarAuto
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: be0d0000
-    m_LastClickedID: 3518
-    m_ExpandedIDs: 00000000520b0000d20b00005a0c0000be0c0000f40c0000
+    m_SelectedIDs: 600b0000
+    m_LastClickedID: 2912
+    m_ExpandedIDs: 00000000560b0000d80b0000600c0000c40c0000fe0c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -364,7 +364,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000520b0000d20b00005a0c0000be0c0000f40c0000
+    m_ExpandedIDs: 00000000560b0000d80b0000600c0000c40c0000fe0c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -480,28 +480,28 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 3a5b0000
-    m_LastClickedID: 23354
-    m_ExpandedIDs: 20f2eeff8ef2eeff16f4eeff12a4f9ff7aa4f9ff02a6f9ff4866faffaa66faff3268faffb476faff5a77faffe278faff7cd5faff5ae2faffbce2faff42e4faff7e98fcffe098fcff669afcff90b3fcfff2b3fcff78b5fcffecc5fcff4ec6fcffd4c7fcffe8c7fdff4ac8fdffdac9fdff6ce0fdffcee0fdff5ee2fdff84fffdff2e00feffbe01feff80a2feff28bafeffdebbfeff40bdfefff4befeff24c7feffe4fbffff0000000016320000
+    m_SelectedIDs: 0c060000
+    m_LastClickedID: 0
+    m_ExpandedIDs: b4a1f8ff14a2f8ff9ca3f8ffe4fbffff00000000880e0000a00e0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: PathGP
-      m_OriginalName: PathGP
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: -371090
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 0
       m_ClientGUIView: {fileID: 4}
     m_SearchString: 
   m_ExpandedScenes:
-  - Level2
+  - Level1
   m_CurrenRootInstanceID: 0
   m_LockTracker:
     m_IsLocked: 0
@@ -532,14 +532,14 @@ MonoBehaviour:
     height: 336
   m_PersistentViewDataDictionary: {fileID: 0}
   m_SceneLighting: 1
-  lastFramingTime: 9123.8733373
+  lastFramingTime: 12526.3179552
   m_2DMode: 1
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -20.338379, y: 13.363942, z: -0.050918788}
+    m_Target: {x: 0.4775739, y: 0.8182744, z: 0.001583689}
     speed: 2
-    m_Value: {x: -20.338379, y: 13.363942, z: -0.050918788}
+    m_Value: {x: 0.4775739, y: 0.8182744, z: 0.001583689}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -571,9 +571,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 40.92237
+    m_Target: 1.0719104
     speed: 2
-    m_Value: 40.92237
+    m_Value: 1.0719104
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -632,7 +632,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 1
+    m_EnableMouseInput: 0
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -643,18 +643,18 @@ MonoBehaviour:
       y: 17
       width: 816
       height: 319
-    m_Scale: {x: 1, y: 1}
-    m_Translation: {x: 408, y: 159.5}
+    m_Scale: {x: 2.1369565, y: 2.1369565}
+    m_Translation: {x: 407.99994, y: 159.50002}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -408
-      y: -159.5
-      width: 816
-      height: 319
+      x: -190.92572
+      y: -74.63887
+      width: 381.8515
+      height: 149.27773
     m_MinimalGUI: 1
   m_defaultScale: 1
   m_TargetTexture: {fileID: 0}

@@ -7,7 +7,7 @@ public static class LightStatus {
 	public static float uG(float x){
 		if (x < 0.25) {
 			return 1;
-		} else if (x > 0.45) {
+		} else if (x > 0.4) {
 			return 0;
 		} else {
 			return -6.67f * x + 2.67f;

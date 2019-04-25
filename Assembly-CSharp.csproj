@@ -72,9 +72,13 @@
      <Compile Include="Assets\Scripts\Deviation.cs" />
      <Compile Include="Assets\Scripts\Distance.cs" />
      <Compile Include="Assets\Scripts\Drive.cs" />
+     <Compile Include="Assets\Scripts\Forbidden.cs" />
+     <Compile Include="Assets\Scripts\ForbiddenCar.cs" />
      <Compile Include="Assets\Scripts\LightStatus.cs" />
      <Compile Include="Assets\Scripts\Speed.cs" />
+     <Compile Include="Assets\Scripts\Speed2.cs" />
      <Compile Include="Assets\Scripts\Steerage.cs" />
+     <Compile Include="Assets\Scripts\SteerageFob.cs" />
      <Compile Include="Assets\Scripts\TimeLight.cs" />
      <Compile Include="Assets\Scripts\TrafficLightController.cs" />
      <None Include="Assets\Fonts\readme.txt" />
