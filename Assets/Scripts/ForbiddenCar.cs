@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ForbiddenCar : MonoBehaviour {
 
+	public float speed = 0.5f;
 
 	void Start(){
 
@@ -12,7 +13,7 @@ public class ForbiddenCar : MonoBehaviour {
 	}
 
 	void Update(){
-		//transform.Translate (transform.right*Time.deltaTime);
+		transform.Translate (transform.right*this.speed*Time.deltaTime);
 		//getEdge ();
 
 	}
@@ -24,8 +25,8 @@ public class ForbiddenCar : MonoBehaviour {
 //		Debug.Log ("Transform up: " + transform.up);
 		RaycastHit2D hitLeft = Physics2D.Raycast (posRay, - transform.right);
 		RaycastHit2D hitRight = Physics2D.Raycast (posRay, transform.right);
-		Debug.Log ("Forbiddend - hit left: " + hitLeft.distance);
-		Debug.Log ("Forbiddend - hit right: " + hitRight.distance);
+//		Debug.Log ("Forbiddend - hit left: " + hitLeft.distance);
+//		Debug.Log ("Forbiddend - hit right: " + hitRight.distance);
 		if (hitLeft && hitRight)
 			return hitRight.distance / (hitLeft.distance + hitRight.distance);
 		else

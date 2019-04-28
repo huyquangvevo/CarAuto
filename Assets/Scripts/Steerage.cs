@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public static class Steerage {
-
+/*
 	public static float uHR(float x){
 		if (x > 0.75) {
 			return 1;
@@ -90,15 +90,89 @@ public static class Steerage {
 		float r2 = (2.67f - d) / 6.67f;
 		return (r1 + r2) / 2f;
 	}
+*/
+
+	public static float burning = 0;
+	public static float de;
+
+	public static void setParam(float x){
+		de = x;
+		burning = 0f;
+	}
 
 	public static float clarify(float x){
-
+		/*
 		float a = clarifyHR (x) * Deviation.uFL (x) + clarifyR (x) * Deviation.uL (x) + clarifyS (x) * Deviation.uM (x) 
 			+ clarifyL (x) * Deviation.uR (x) + clarifyHL (x) * Deviation.uFR (x);
 
 		float b = Deviation.uFL (x) + Deviation.uL (x) + Deviation.uM (x) + Deviation.uR (x) + Deviation.uFR (x);
+		*/
+	//	return a / b;
+		setParam(x);
+		float m = getRule01() + getRule02() + getRule03() + getRule04() + getRule05();
+		return m / burning;
+	}
 
-		return a / b;
+	public static float hardRight(float x){
+		float r1 = (4f + x) / 6.67f;
+		float r2 = 1;
+		return (r1 + r2) / 2f;
+	}
+
+	public static float right(float x){
+		float r1 = (5f + x) / 10f;
+		float r2 = (5f - x) / 6.67f;
+		return (r1 + r2) / 2f;
+	}
+
+	public static float straight(float x){
+		float r1 = (4f + x) / 10f;
+		float r2 = (6f - x) / 10f;
+		return (r1 + r2) / 2f;
+	}
+
+	public static float left(float x){
+	//	float r1 = (1.67f + x) / 6.67f;
+	//	float r2 = (5f - x) / 10f;
+		float r1 = 0;
+		float r2 = (1.25f - x) / 2.5f;
+		return (r1 + r2) / 2f;
+	}
+
+	public static float hardLeft(float x){
+		float r1 = 0;
+		float r2 = (2.67f - x) / 6.67f;
+		return (r1 + r2) / 2f;
+	}
+
+	public static float getRule01(){
+		float a = Deviation.uFL (de);
+		burning += a;
+		return a * hardRight (a);
+	}
+
+	public static float getRule02(){
+		float a = Deviation.uL (de);
+		burning += a;
+		return a * hardRight (a);
+	}
+
+	public static float getRule03(){
+		float a = Deviation.uM (de);
+		burning += a;
+		return a * hardRight (a);
+	}
+
+	public static float getRule04(){
+		float a = Deviation.uR (de);
+		burning += a;
+		return a * straight (a);
+	}
+
+	public static float getRule05(){
+		float a = Deviation.uFR (de);
+		burning += a;
+		return a * left (a);
 	}
 
 }

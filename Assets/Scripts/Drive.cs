@@ -11,11 +11,10 @@ public class Drive : MonoBehaviour {
 	void Start () {
 		rb = GetComponent<Rigidbody2D> ();
 
-	//	driveCar ();
+		//	driveCar ();
 	}
 
 	void OnTriggerEnter2D(Collider2D col){
-	//	Physics2D.IgnoreCollision (GetComponent<Collider2D>(), col.gameObject.GetComponent<Collider2D>());
 		if (col.gameObject.name == "ForbiddenCar")
 			col.enabled = false;
 		if (col.gameObject.name == "TrafficLight") {
@@ -23,9 +22,9 @@ public class Drive : MonoBehaviour {
 		}
 		Debug.Log (col.gameObject.name);
 	}
-	
+
 	void Update () {
-	//	steer(getDeviation());
+		//	steer(getDeviation());
 		controlSpeed ();
 	}
 
@@ -34,76 +33,106 @@ public class Drive : MonoBehaviour {
 		this.rb.velocity = new Vector2 (1f,0f)*speed;
 	}
 
+//	float p = 0f;
 
 	float getDeviation(){
-		Vector3 posRayLeft = new Vector3 (transform.position.x + 0.3f, transform.position.y/* + 0.2f*/, transform.position.z);
-		Vector3 posRayRight = new Vector3 (transform.position.x + 0.3f, transform.position.y/* - 0.2f*/, transform.position.z);
+		Vector3 posRayLeft = new Vector3 (transform.position.x /*+ 0.3f*/, transform.position.y/* + 0.2f*/, transform.position.z);
+		Vector3 posRayRight = new Vector3 (transform.position.x/* + 0.3f*/, transform.position.y/* - 0.2f*/, transform.position.z);
+
+		//Vector3 vRay = new Vector3 (0, 1, 0);
 
 		RaycastHit2D hitLeft = Physics2D.Raycast (posRayLeft, -transform.right);
 		RaycastHit2D hitRight = Physics2D.Raycast (posRayRight, transform.right);
 
 		if (hitLeft && hitRight) {
-			if (hitLeft.collider.gameObject.tag == "TrafficLight" || hitRight.collider.gameObject.tag == "TrafficLight") {
+			if (hitLeft.collider.gameObject.tag == "TrafficLight" || hitRight.collider.gameObject.tag == "TrafficLight" || hitLeft.collider.gameObject.tag == "ForbiddenCar" || hitRight.collider.gameObject.tag == "ForbiddenCar") {
+				//Debug.Log ("Va cham : ");
+				if(hitLeft.collider.gameObject.tag == "TrafficLight" || hitLeft.collider.gameObject.tag == "ForbiddenCar"){
+					hitLeft.collider.enabled = false;
+				};
+				if (hitRight.collider.gameObject.tag == "TrafficLight" || hitRight.collider.gameObject.tag == "ForbiddenCar") {
+					hitRight.collider.enabled = false;
+				}	
 				return 1;
 			}
-		//	Debug.Log ("InRoad");
-		//	Debug.Log ("Hit Left: " + hitLeft.distance);
-		//	Debug.Log ("Hit Right: " + hitRight.distance);
-			float mid = (hitLeft.distance + hitRight.distance)/2f;
-		//	return (hitLeft.distance) / (hitLeft.distance + hitRight.distance);
-			return (hitLeft.distance-mid) / (mid);
+			//	Debug.Log ("InRoad");
+				Debug.Log ("Hit Left: " + hitLeft.distance);
+				Debug.Log ("Hit Right: " + hitRight.distance);
+			//float mid = (hitLeft.distance + hitRight.distance)/2f;
+			//if (hitLeft.distance >= mid)
+				//	return (hitLeft.distance - mid) / mid;
+			return (hitLeft.distance) / (hitLeft.distance + hitRight.distance);
+		//	return (hitLeft.distance-mid) / (mid);
 		} else {
-		//	Debug.Log ("***** OutRoad *****");
+			//	Debug.Log ("***** OutRoad *****");
 			return 0f;
 		}
 	}
 
-	void steer(float x){
-		if (x == 0f) {
+	void steer(float de,float disFob, float df, int t){
+		if (de == 0f) {
 			transform.rotation = Quaternion.Euler (new Vector3 (0, 0, direction*180));
 			return;		
+		};
+		float st;
+		if (t == 0) {
+			st = Steerage.clarify (de);
+		} else {
+		//	Debug.Log ("DeviationFob: " + x + " Distance: " + disFob);
+			st = SteerageFob.clarify (de,disFob,df);
+		//	st = Steerage.clarify(x);
+		//	Debug.Log ("Steerage Fob: " + st);
 		}
-		float st = Steerage.clarify (x);
-	//		Debug.Log ("Steerage: " + st);
+	//	Debug.Log ("T : " + t);
+	//	Debug.Log ("Steerage: " + st);
 		float d = -(st - 0.5f) * 180f;
-	//	Debug.Log ("Degree: " + d);
+		//	Debug.Log ("Degree: " + d);
 		transform.rotation = Quaternion.Euler(new Vector3 (0, 0, direction*180+d));
 		//Debug.Log ("Rotation: "+ transform.rotation);
 		Vector2 v = getDirectVelocity(st);
-	
+	//	if(t == 1)
+	//		Debug.Log ("Vector Velocity: " + v + " Speed: " + this.speed);
 		rb.velocity = v*this.speed*1.5f;
-	//	Debug.Log ("Velocity: "+rb.velocity);
+		//	Debug.Log ("Velocity: "+rb.velocity);
 	}
 
 	void controlSpeed(){
 		Vector3 posRayUp = new Vector3 (transform.position.x, transform.position.y, transform.position.z);
-
-		RaycastHit2D hitUp = Physics2D.Raycast (posRayUp, transform.up);
+	//	Vector3 posRayUp = new Vector3(transform.position.x,transform.position.y);
+		Vector3 directRay = new Vector3(1,0,0);
+		RaycastHit2D hitUp = Physics2D.Raycast (posRayUp, directRay  /*transform.up*/);
+	//	Debug.Log ("Transform up: " + transform.up);
 		float dev = getDeviation ();
 		if (dev == 1)
 			return;
 		this.speed = Mathf.Abs (Speed.clarify (1, 0f, 10f, dev));
 
+		int obj = 0;
+		float disFob = 10;
+		float df = 0;
 		if (hitUp) {
 			if (hitUp.collider.gameObject.tag == "TrafficLight") {
 
 				TrafficLightController traffic = (TrafficLightController)hitUp.collider.gameObject.GetComponent<TrafficLightController> ();
 				float dis = hitUp.distance;
-			//	Debug.Log ("Distance: "+dis);
+				//	Debug.Log ("Distance: "+dis);
 				this.speed = Mathf.Abs (Speed.clarify (traffic.getIdL (), traffic.getRatioTime (), dis, dev));
+				obj = 0;
 				//Debug.Log ("Distance: " + dis + " Time: " + traffic.getRatioTime() + " Deviation: " + dev);
-			//	Debug.Log ("Speed Controll: " + this.speed);
-			} else if(hitUp.collider.gameObject.tag == "ForbiddenCar"){
-				float df = hitUp.collider.gameObject.GetComponent<ForbiddenCar> ().getDeviation ();
-				this.speed = Mathf.Abs (Forbidden.clarify (hitUp.distance, df, 0));
-				Debug.Log ("ForbiddenCar Distance: " + hitUp.distance);
-				Debug.Log ("ForbiddenCar Deviation: " + df);
+				//	Debug.Log ("Speed Controll: " + this.speed);
+			} else if(hitUp.collider.gameObject.tag == "ForbiddenCar" && hitUp.distance < 2f){
+				df = hitUp.collider.gameObject.GetComponent<ForbiddenCar> ().getDeviation ();
+				disFob = hitUp.distance;
+			//	this.speed = Mathf.Abs (Forbidden.clarify (hitUp.distance, df, 0));
+				obj = 1;
+			//	Debug.Log ("ForbiddenCar Distance: " + hitUp.distance);
+			//	Debug.Log ("ForbiddenCar Deviation: " + df);
 			}
 		};
-	//	if(this.speed > 1f)
-	//	Debug.Log ("Speed Controll: " + this.speed);
 
-		steer (dev);
+		//Debug.Log ("Dev: " + dev);
+
+		steer (dev,disFob, df, obj);
 	}
 
 	Vector2 getDirectVelocity(float steer){
@@ -143,7 +172,7 @@ public class Drive : MonoBehaviour {
 				v_ = new Vector2 (-1f, 1f * Mathf.Tan (Mathf.PI * steer));
 			} else
 				v_ = new Vector2 (1f, 1f);
-		//	Debug.Log ("Velocity prev: "+v_);
+			//	Debug.Log ("Velocity prev: "+v_);
 			v_ = v_*Mathf.Abs (v_.x / (2*v_.y));
 			return v_;
 		}

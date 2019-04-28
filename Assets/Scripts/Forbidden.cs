@@ -27,12 +27,14 @@ public static class Forbidden {
 	}
 
 	public static float clarify(float di_, float de_, float df_){
-		Debug.Log ("Di : "+di_ + " De: "+de_ + " Df: "+df_);
+	//	Debug.Log ("Di : "+di_ + " De: "+de_ + " Df: "+df_);
 		setParam (di_, de_, df_);
 
 		float m = getRule01 () + getRule02 () + getRule03 () + getRule04 () + getRule05 () 
 			+ getRule06 () + getRule07() + getRule08() + getRule09() + getRule10() + getRule11();
-		
+	/*	float m = getRule01 () + getRule02 () + getRule03 () + getRule04 () + getRule05 () 
+			+ getRule06 () + getRule07() ;
+	*/
 		return m/burning;
 	}
 
@@ -66,7 +68,7 @@ public static class Forbidden {
 		float a = Mathf.Min (uDi, uDe);
 		float b = uDe * uDi;
 		burning += b;
-		idR++; debugRule(b); return b * slower (a);
+		return b * slower (a);
 	}
 
 	public static float getRule02(){
@@ -75,7 +77,7 @@ public static class Forbidden {
 		float a = Mathf.Min (uDi, uDe);
 		float b = uDe * uDi;
 		burning += b;
-		idR++; debugRule(b); return b * slower (a);
+		return b * slower (a);
 	}
 
 	public static float getRule03(){
@@ -84,7 +86,7 @@ public static class Forbidden {
 		float a = Mathf.Min (uDi, uDe);
 		float b = uDe * uDi;
 		burning += b;
-		idR++; debugRule(b); return b * slow (a);
+		 return b * slow (a);
 	}
 
 	public static float getRule04(){
@@ -93,7 +95,7 @@ public static class Forbidden {
 		float a = Mathf.Min (uDi, uDe);
 		float b = uDe * uDi;
 		burning += b;
-		idR++; debugRule(b); return b * slow (a);
+		 return b * slow (a);
 	}
 
 	public static float getRule05(){
@@ -102,7 +104,7 @@ public static class Forbidden {
 		float a = Mathf.Min (uDi, uDe);
 		float b = uDe * uDi;
 		burning += b;
-		idR++; debugRule(b); return b * medium (a);
+		return b * medium (a);
 	}
 
 	public static float getRule06(){
@@ -111,7 +113,7 @@ public static class Forbidden {
 		float a = uDi;
 		float b = uDi;
 		burning += b;
-		idR++; debugRule(b); return b * stop (a);
+		return b * stop (a);
 	}
 
 
@@ -121,7 +123,7 @@ public static class Forbidden {
 		float a = uDi;
 		float b = uDi;
 		burning += b;
-		idR++; debugRule(b); return b * medium (a);
+		return b * medium (a);
 	}
 */
 	public static float getRule01(){
@@ -219,6 +221,6 @@ public static class Forbidden {
 		float a = uDi;
 		float b = uDi;
 		burning += b;
-		idR++; debugRule(b); return b * medium (a);
+		return b * medium (a);
 	}
 }
