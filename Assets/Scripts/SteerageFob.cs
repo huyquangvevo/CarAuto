@@ -76,7 +76,7 @@ public static class SteerageFob {
 		float a = Mathf.Min (uDe, Mathf.Min (uDi, uDf));
 		float b = uDe * uDi * uDf;
 		burning += b;
-		return b * Steerage.straight (a);
+		return b * Steerage.right (a);
 	}
 
 	public static float getRule05(){
@@ -86,7 +86,7 @@ public static class SteerageFob {
 		float a = Mathf.Min (uDe, Mathf.Min (uDi, uDf));
 		float b = uDe * uDi * uDf;
 		burning += b;
-		return b * Steerage.straight (a);
+		return b * Steerage.hardRight (a);
 	}
 
 	public static float getRule06(){
@@ -96,7 +96,7 @@ public static class SteerageFob {
 		float a = Mathf.Min (uDe, Mathf.Min (uDi, uDf));
 		float b = uDe * uDi * uDf;
 		burning += b;
-		return b * Steerage.right (a);
+		return b * Steerage.hardRight (a);
 	}
 
 	public static float getRule07(){
@@ -136,7 +136,7 @@ public static class SteerageFob {
 		float a = Mathf.Min (uDe, Mathf.Min (uDi, uDf));
 		float b = uDe * uDi * uDf;
 		burning += b;
-		return b * Steerage.straight (a);
+		return b * Steerage.right (a);
 	}
 
 	public static float getRule11(){
@@ -146,7 +146,7 @@ public static class SteerageFob {
 		float a = Mathf.Min (uDe, Mathf.Min (uDi, uDf));
 		float b = uDe * uDi * uDf;
 		burning += b;
-		return b * Steerage.hardRight (a);
+		return b * Steerage.straight (a);
 	}
 
 	public static float getRule12(){
@@ -166,7 +166,7 @@ public static class SteerageFob {
 		float a = Mathf.Min (uDe, Mathf.Min (uDi, uDf));
 		float b = uDe * uDi * uDf;
 		burning += b;
-		return b * Steerage.hardRight (a);
+		return b * Steerage.hardLeft (a);
 	}
 
 	public static float getRule14(){
@@ -196,7 +196,7 @@ public static class SteerageFob {
 		float a = Mathf.Min (uDe, Mathf.Min (uDi, uDf));
 		float b = uDe * uDi * uDf;
 		burning += b;
-		return b * Steerage.straight (a);
+		return b * Steerage.left (a);
 	}
 
 	public static float getRule17(){
@@ -246,7 +246,7 @@ public static class SteerageFob {
 		float a = Mathf.Min (uDe, Mathf.Min (uDi, uDf));
 		float b = uDe * uDi * uDf;
 		burning += b;
-		return b * Steerage.left (a);
+		return b * Steerage.hardLeft (a);
 	}
 
 	public static float getRule22(){
@@ -286,7 +286,7 @@ public static class SteerageFob {
 		float a = Mathf.Min (uDe, Mathf.Min (uDi, uDf));
 		float b = uDe * uDi * uDf;
 		burning += b;
-		return b * Steerage.left (a);
+		return b * Steerage.hardLeft (a);
 	}
 
 }

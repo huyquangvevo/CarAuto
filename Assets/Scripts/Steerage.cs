@@ -132,10 +132,10 @@ public static class Steerage {
 	}
 
 	public static float left(float x){
-	//	float r1 = (1.67f + x) / 6.67f;
-	//	float r2 = (5f - x) / 10f;
-		float r1 = 0;
-		float r2 = (1.25f - x) / 2.5f;
+		float r1 = (1.67f + x) / 6.67f;
+		float r2 = (5f - x) / 10f;
+	//	float r1 = 0;
+	//	float r2 = (1.25f - x) / 2.5f;
 		return (r1 + r2) / 2f;
 	}
 
@@ -148,31 +148,36 @@ public static class Steerage {
 	public static float getRule01(){
 		float a = Deviation.uFL (de);
 		burning += a;
+		//return a * hardRight (a);
 		return a * hardRight (a);
 	}
 
 	public static float getRule02(){
 		float a = Deviation.uL (de);
 		burning += a;
-		return a * hardRight (a);
+		return a * right (a);
+		//return a * hardRight (a);
 	}
 
 	public static float getRule03(){
 		float a = Deviation.uM (de);
 		burning += a;
-		return a * hardRight (a);
+		return a * straight (a);
+		//return a * hardRight (a);
 	}
 
 	public static float getRule04(){
 		float a = Deviation.uR (de);
 		burning += a;
-		return a * straight (a);
+		return a * left (a);
+	//	return a * straight (a);
 	}
 
 	public static float getRule05(){
 		float a = Deviation.uFR (de);
 		burning += a;
-		return a * left (a);
+	//	return a * (a);
+		return a * hardLeft (a);
 	}
 
 }

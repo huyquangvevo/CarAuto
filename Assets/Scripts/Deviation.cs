@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public static class Deviation {
-/*
+
 	public static float uFL(float x){
 		if (x < 0.25) {
 			return 1f;
@@ -53,8 +53,8 @@ public static class Deviation {
 			return 6.67f * x - 4f;
 		}
 	}
-*/
-	public static float uFL(float x){
+
+/*	public static float uFL(float x){
 		if (x < 0.15f) {
 			return 1;
 		} else if (x > 0.3f) {
@@ -103,5 +103,5 @@ public static class Deviation {
 			return 6.67f*x - 4.67f;
 		}
 	}
-
+*/
 }

@@ -8,6 +8,9 @@ public class Drive : MonoBehaviour {
 	public float speed = 0.3f;
 	public float direction = -0.5f;
 
+//	Vector2 posRayLeft;
+//	Vector2 posRayRight;
+
 	void Start () {
 		rb = GetComponent<Rigidbody2D> ();
 
@@ -32,17 +35,24 @@ public class Drive : MonoBehaviour {
 
 		this.rb.velocity = new Vector2 (1f,0f)*speed;
 	}
+		
 
-//	float p = 0f;
 
 	float getDeviation(){
-		Vector3 posRayLeft = new Vector3 (transform.position.x /*+ 0.3f*/, transform.position.y/* + 0.2f*/, transform.position.z);
-		Vector3 posRayRight = new Vector3 (transform.position.x/* + 0.3f*/, transform.position.y/* - 0.2f*/, transform.position.z);
+		Vector2 posRayLeft = transform.position;
+		Vector2 posRayRight = transform.position;
+//		Debug.Log ("Transform up : " + transform.up);
+	/*	if (direction == -0.5) {
+			posRayLeft = new Vector2 (transform.position.x + 0.3f, transform.position.y + 0.3f);
+			posRayRight = new Vector2 (transform.position.x + 0.3f, transform.position.y - 0.3f);
 
-		//Vector3 vRay = new Vector3 (0, 1, 0);
-
-		RaycastHit2D hitLeft = Physics2D.Raycast (posRayLeft, -transform.right);
-		RaycastHit2D hitRight = Physics2D.Raycast (posRayRight, transform.right);
+		} else {
+			posRayLeft = new Vector2 (transform.position.x - 0.3f, transform.position.y + 0.3f);
+			posRayRight = new Vector2 (transform.position.x + 0.3f, transform.position.y + 0.3f);
+		}
+	*/
+		RaycastHit2D hitLeft = Physics2D.Raycast (posRayLeft,/*Vector2.up*/ -transform.right);
+		RaycastHit2D hitRight = Physics2D.Raycast (posRayRight, /*-Vector2.up*/ transform.right);
 
 		if (hitLeft && hitRight) {
 			if (hitLeft.collider.gameObject.tag == "TrafficLight" || hitRight.collider.gameObject.tag == "TrafficLight" || hitLeft.collider.gameObject.tag == "ForbiddenCar" || hitRight.collider.gameObject.tag == "ForbiddenCar") {
@@ -55,13 +65,23 @@ public class Drive : MonoBehaviour {
 				}	
 				return 1;
 			}
+			if (hitLeft.collider.gameObject.tag == "Bump") {
+				this.direction = hitLeft.collider.gameObject.GetComponent<Bump> ().getDCrossroads ();
+			//	this.direction = 0f;
+			
+			}
+
+			if (hitRight.collider.gameObject.tag == "Bump") {
+			//	this.direction = 0;
+			
+			}
 			//	Debug.Log ("InRoad");
-				Debug.Log ("Hit Left: " + hitLeft.distance);
-				Debug.Log ("Hit Right: " + hitRight.distance);
+			//	Debug.Log ("Hit Left: " + hitLeft.distance);
+			//	Debug.Log ("Hit Right: " + hitRight.distance);
 			//float mid = (hitLeft.distance + hitRight.distance)/2f;
 			//if (hitLeft.distance >= mid)
 				//	return (hitLeft.distance - mid) / mid;
-			return (hitLeft.distance) / (hitLeft.distance + hitRight.distance);
+			return (hitLeft.distance - 0.05f) / (hitLeft.distance + hitRight.distance - 0.1f);
 		//	return (hitLeft.distance-mid) / (mid);
 		} else {
 			//	Debug.Log ("***** OutRoad *****");
@@ -88,21 +108,28 @@ public class Drive : MonoBehaviour {
 		float d = -(st - 0.5f) * 180f;
 		//	Debug.Log ("Degree: " + d);
 		transform.rotation = Quaternion.Euler(new Vector3 (0, 0, direction*180+d));
-		//Debug.Log ("Rotation: "+ transform.rotation);
+	//	Debug.Log ("Rotation: "+ transform.rotation.z);
 		Vector2 v = getDirectVelocity(st);
 	//	if(t == 1)
 	//		Debug.Log ("Vector Velocity: " + v + " Speed: " + this.speed);
-		rb.velocity = v*this.speed*1.5f;
+		rb.velocity = v*this.speed*3f;
 		//	Debug.Log ("Velocity: "+rb.velocity);
 	}
 
 	void controlSpeed(){
 		Vector3 posRayUp = new Vector3 (transform.position.x, transform.position.y, transform.position.z);
 	//	Vector3 posRayUp = new Vector3(transform.position.x,transform.position.y);
-		Vector3 directRay = new Vector3(1,0,0);
-		RaycastHit2D hitUp = Physics2D.Raycast (posRayUp, directRay  /*transform.up*/);
-	//	Debug.Log ("Transform up: " + transform.up);
+	//	Vector3 directRay = new Vector3(1,0,0);
+		RaycastHit2D hitUp = Physics2D.Raycast (posRayUp,  transform.up);
+
+//	Debug.Log ("Transform up: " + transform.up);
 		float dev = getDeviation ();
+		if (transform.rotation.z > -0.23f) {
+			//this.direction = 0;
+		//	Debug.Log ("Dev roration: " + dev);
+			//dev = 0.6f;
+		}
+
 		if (dev == 1)
 			return;
 		this.speed = Mathf.Abs (Speed.clarify (1, 0f, 10f, dev));
@@ -125,7 +152,7 @@ public class Drive : MonoBehaviour {
 				disFob = hitUp.distance;
 			//	this.speed = Mathf.Abs (Forbidden.clarify (hitUp.distance, df, 0));
 				obj = 1;
-			//	Debug.Log ("ForbiddenCar Distance: " + hitUp.distance);
+				Debug.Log ("ForbiddenCar Distance: " + hitUp.distance);
 			//	Debug.Log ("ForbiddenCar Deviation: " + df);
 			}
 		};

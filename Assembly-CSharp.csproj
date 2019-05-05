@@ -69,6 +69,8 @@
      <Compile Include="Assets\BezierPathCreator\Examples\Scripts\PathFromObjects.cs" />
      <Compile Include="Assets\BezierPathCreator\Examples\Scripts\PathSceneTool.cs" />
      <Compile Include="Assets\BezierPathCreator\Examples\Scripts\RoadMeshCreator.cs" />
+     <Compile Include="Assets\Scripts\Bump.cs" />
+     <Compile Include="Assets\Scripts\CrossRoads.cs" />
      <Compile Include="Assets\Scripts\Deviation.cs" />
      <Compile Include="Assets\Scripts\Distance.cs" />
      <Compile Include="Assets\Scripts\Drive.cs" />
