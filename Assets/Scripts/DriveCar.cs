@@ -25,8 +25,8 @@ public class DriveCar : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		//controlSpeed ();
-		steer(0);
+		controlSpeed ();
+		//steer(0);
 	}
 
 	float getDeviation(){
@@ -48,36 +48,57 @@ public class DriveCar : MonoBehaviour {
 	//	Debug.Log ("Angle Car - Road : " + Vector2.SignedAngle (transform.up,directRoad));
 	//	Debug.Log ("Angle Road - car: " + Vector2.SignedAngle (directRoad, transform.up));
 		float mid = (hitLeftSensor.distance  + hitRightSensor.distance)/2f;
+		Debug.Log ("Transform up: "+transform.up);
 		Debug.Log ("Left distance: " + hitLeftSensor.distance);
 		Debug.Log ("Left distance mid: " + (hitLeftSensor.distance - mid));
 		Debug.Log ("right distance: " + hitRightSensor.distance);
+		Debug.Log ("Direction Road: " + directRoad);
+		//if(Mathf.Abs(angleCarAndRoad) > )
+	/*	if (hitRightSensor.distance > 5f) {
+			angleCarAndRoad = 0f;
+			return 0.495f;	
+		}
+*/	//	Debug.Log("Degree direction Road: " + Vector2.SignedAngle(directRoad,Vector2.right));
 	//	if (hitLeftSensor.distance - mid < 0)
 	//		Debug.Break ();
-	//	return (hitLeftSensor.distance - mid) / mid;
-		return (hitLeftSensor.distance) / (hitLeftSensor.distance + hitRightSensor.distance);
+		return (hitLeftSensor.distance - mid) / mid;
+	//	return (hitLeftSensor.distance) / (hitLeftSensor.distance + hitRightSensor.distance);
 	}
 
 
 
-	void steer(float dev){
-		float de = getDeviation ();
+	void steer(float de){
+	//	float de = getDeviation ();
 		float st = Steerage.clarify (de);
 	//	Debug.Log ("Steering: " + st);
 		float d = (st - 0.5f) * 90;
 
-	//	Debug.Log ("Steerage Degree: " + d);
-	//	Debug.Log ("Angle Car And Road: " + angleCarAndRoad);
+		Debug.Log ("Steerage Degree: " + d);
+		Debug.Log ("Angle Car And Road: " + angleCarAndRoad);
 		float a = d - angleCarAndRoad;
-		Debug.Log ("Xe: " + transform.position);
-	//	Debug.Log ("Angle rotate: " + a);
+	//	Debug.Log ("Xe: " + transform.position);
+	
+		Debug.Log ("Angle rotate: " + a);
 	//	rb.velocity = transform.up*0f;
 		float nextZ = (transform.eulerAngles.z - ( d - angleCarAndRoad));
+
 		Debug.Log("next z: " + nextZ);
-		transform.rotation = Quaternion.Euler (new Vector3 (0, 0, transform.eulerAngles.z - ( d - angleCarAndRoad)));
+		Debug.Log (" ___________________ ");
+		if (Mathf.Abs (a) > 5) {
+			if (a > 0)
+				transform.rotation = Quaternion.Euler (new Vector3 (0, 0, transform.eulerAngles.z - 1f));
+			else {
+				transform.rotation = Quaternion.Euler (new Vector3 (0, 0, transform.eulerAngles.z + 1f));
+
+			}
+		//	return;
+			Debug.Log ("Angle rotate > 80");
+		//	Debug.Break ();
+		} else 
+			transform.rotation = Quaternion.Euler (new Vector3 (0, 0, transform.eulerAngles.z - ( d - angleCarAndRoad)));
 	//	Debug.Log ("z: " + transform.eulerAngles.z);
 		rb.velocity = transform.up *this.speed* 2f;
-	//	if (nextZ > 90)
-	//		Debug.Break ();
+
 	}
 
 	void controlSpeed(){
@@ -85,7 +106,6 @@ public class DriveCar : MonoBehaviour {
 		RaycastHit2D hitUp = Physics2D.Raycast (posRayUp,transform.up);
 		float dev = getDeviation ();
 		this.speed = Mathf.Abs (Speed.clarify (1, 0f, 10f, dev));
-		this.speed = 1f;
 		steer (dev);
 	}
 
