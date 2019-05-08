@@ -13,7 +13,7 @@ public class ForbiddenCar : MonoBehaviour {
 	}
 
 	void Update(){
-		transform.Translate (transform.right*this.speed*Time.deltaTime);
+		transform.Translate (transform.up*this.speed*Time.deltaTime);
 		//getEdge ();
 
 	}
