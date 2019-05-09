@@ -70,7 +70,9 @@
      <Compile Include="Assets\BezierPathCreator\Examples\Scripts\PathSceneTool.cs" />
      <Compile Include="Assets\BezierPathCreator\Examples\Scripts\RoadMeshCreator.cs" />
      <Compile Include="Assets\Scripts\Bump.cs" />
+     <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\CrossRoads.cs" />
+     <Compile Include="Assets\Scripts\Destination.cs" />
      <Compile Include="Assets\Scripts\Deviation.cs" />
      <Compile Include="Assets\Scripts\Distance.cs" />
      <Compile Include="Assets\Scripts\Drive.cs" />
@@ -78,10 +80,13 @@
      <Compile Include="Assets\Scripts\Forbidden.cs" />
      <Compile Include="Assets\Scripts\ForbiddenCar.cs" />
      <Compile Include="Assets\Scripts\LightStatus.cs" />
+     <Compile Include="Assets\Scripts\MainController.cs" />
      <Compile Include="Assets\Scripts\Speed.cs" />
      <Compile Include="Assets\Scripts\Speed2.cs" />
+     <Compile Include="Assets\Scripts\SpeedForbidden.cs" />
      <Compile Include="Assets\Scripts\Steerage.cs" />
      <Compile Include="Assets\Scripts\SteerageFob.cs" />
+     <Compile Include="Assets\Scripts\SteerageForbidden.cs" />
      <Compile Include="Assets\Scripts\TimeLight.cs" />
      <Compile Include="Assets\Scripts\TrafficLightController.cs" />
      <None Include="Assets\Fonts\readme.txt" />

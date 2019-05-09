@@ -7,6 +7,7 @@ TagManager:
   - TrafficLight
   - ForbiddenCar
   - Bump
+  - Realmadrid
   layers:
   - Default
   - TransparentFX

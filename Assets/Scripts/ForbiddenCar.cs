@@ -6,16 +6,29 @@ public class ForbiddenCar : MonoBehaviour {
 
 	public float speed = 0.5f;
 
+	int layerCar;
+
 	void Start(){
 
 		getDeviation ();
+		layerCar = LayerMask.GetMask ("Car");
 	
 	}
 
 	void Update(){
-		transform.Translate (transform.up*this.speed*Time.deltaTime);
 		//getEdge ();
+		move();
+	}
 
+	void move(){
+		RaycastHit2D hitUpFor = Physics2D.Raycast (transform.position, transform.up, 2f, layerCar);
+		if (hitUpFor) {
+			this.speed = 0;
+		} else {
+			this.speed = 1f;
+		}
+
+		transform.Translate (-transform.up*this.speed*Time.deltaTime);
 	}
 
 	public float getDeviation(){

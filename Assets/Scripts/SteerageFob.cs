@@ -28,17 +28,19 @@ public static class SteerageFob {
 	public static float clarify(float de_, float di_, float df_){
 
 		setParam (de_, di_, df_);
-		float m = getRule01 () + getRule02 () + getRule03 () + getRule04 () + getRule05 () + getRule06 () + getRule07 () + getRule08 ()
+	/*	float m = getRule01 () + getRule02 () + getRule03 () + getRule04 () + getRule05 () + getRule06 () + getRule07 () + getRule08 ()
 			+ getRule09 () + getRule10 () + getRule11 () + getRule12 () + getRule13 () + getRule14 () + getRule15 () + getRule16 ()
 			+ getRule17 () + getRule18 () + getRule19 () + getRule20 () + getRule21 () + getRule22 () + getRule23 () + getRule24 ()
 			+ getRule25 (); 
-
+	*/
+		float m = 0f;
 		return m / burning;
 
 	}
+		
 
 	//public static float 
-
+/*
 	public static float getRule01(){
 		float uDe = Deviation.uFL (de);
 		float uDi = Distance.uN (di);
@@ -288,5 +290,5 @@ public static class SteerageFob {
 		burning += b;
 		return b * Steerage.hardLeft (a);
 	}
-
+*/
 }
