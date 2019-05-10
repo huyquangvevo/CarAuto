@@ -42,7 +42,8 @@ GameObject:
   - component: {fileID: 61872836572957158}
   - component: {fileID: 68322471651620998}
   - component: {fileID: 114824450985130520}
-  m_Layer: 5
+  - component: {fileID: 61048740656987616}
+  m_Layer: 10
   m_Name: TrafficLight
   m_TagString: TrafficLight
   m_Icon: {fileID: 0}
@@ -136,6 +137,31 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!61 &61048740656987616
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1246004222279060}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0000019073486, y: 33.313255}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 15.313141, y: 108.65689}
+  m_EdgeRadius: 0
 --- !u!61 &61872836572957158
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -148,7 +174,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.18045878, y: -55.118332}
+  m_Offset: {x: -0.18048, y: 0.16644669}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -159,7 +185,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 15.675043, y: 45.58014}
+  m_Size: {x: 18.046122, y: 48.92646}
   m_EdgeRadius: 0
 --- !u!68 &68322471651620998
 EdgeCollider2D:
@@ -167,17 +193,17 @@ EdgeCollider2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1246004222279060}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -18}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -0.5, y: 0}
-  - {x: -0.41326904, y: -79.45517}
+  - {x: -0.9506073, y: -0.45061874}
+  - {x: -147.91301, y: -0.9842224}
 --- !u!114 &114035793160276014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -387,8 +413,8 @@ MonoBehaviour:
   - {fileID: 114281386777819242}
   - {fileID: 114941334813135818}
   - {fileID: 114973234564979050}
-  thresholdLight: 150000000b00000004000000
-  startPoint: 0f0000000800000004000000
+  thresholdLight: 0f0000000b00000004000000
+  startPoint: 0f0000000b00000004000000
   colorLights:
   - {r: 0.8980392, g: 0.11372549, b: 0.11372549, a: 1}
   - {r: 0.19215687, g: 0.85882354, b: 0.14901961, a: 1}
@@ -643,7 +669,7 @@ RectTransform:
   m_GameObject: {fileID: 1246004222279060}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 224969308822003896}
   - {fileID: 224290565075788914}
@@ -653,7 +679,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 233, y: 52}
+  m_AnchoredPosition: {x: 179, y: 336}
   m_SizeDelta: {x: -1630.63, y: -562.12}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224761421951714046
