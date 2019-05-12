@@ -9,8 +9,8 @@ public class CrossRoads : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		//if(listRoad[this.direct] != null)
-		//	listRoad [this.direct].SetActive (true);
+		if(listRoad[this.direct] != null)
+			listRoad [this.direct].SetActive (true);
 	}
 	
 	// Update is called once per frame

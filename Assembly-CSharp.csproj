@@ -83,6 +83,7 @@
      <Compile Include="Assets\Scripts\MainController.cs" />
      <Compile Include="Assets\Scripts\Speed.cs" />
      <Compile Include="Assets\Scripts\Speed2.cs" />
+     <Compile Include="Assets\Scripts\SpeedFob.cs" />
      <Compile Include="Assets\Scripts\SpeedForbidden.cs" />
      <Compile Include="Assets\Scripts\Steerage.cs" />
      <Compile Include="Assets\Scripts\SteerageFob.cs" />
