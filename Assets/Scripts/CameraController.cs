@@ -25,4 +25,5 @@ public class CameraController : MonoBehaviour {
 		cam.orthographicSize += l*10;
 		transform.position = transform.position + new Vector3 (horizontal*5, vertical*5,0);
 	}
+		
 }

@@ -26,7 +26,10 @@ public class DriveCar : MonoBehaviour {
 
 	bool isStop;
 
+	float factor = 2f;
+
 	void Start () {
+		factor = 2f;
 		isStop = false;
 		layerRoad = LayerMask.GetMask ("Road");
 		layerForbidden = LayerMask.GetMask ("Forbidden");
@@ -35,7 +38,7 @@ public class DriveCar : MonoBehaviour {
 	}
 
 	void Update () {
-		if(!isStop)
+		if(!isStop && (Shader.GetGlobalInt("start") == 1))
 			controlSpeed ();
 	}
 
@@ -82,11 +85,16 @@ public class DriveCar : MonoBehaviour {
 		float width = hitLeftsensorUp.distance + hitRightsensorUp.distance;
 
 		if (mode == 0) {
+			if (hitLeftsensorUp.distance - mid <= 0) {
+				this.factor = 2f;
+			} else {
+				this.factor = 2f;
+			}
 			return (hitLeftsensorUp.distance - mid) / mid;
 		///	return (hitLeftsensorUp.distance + width * 0.5f) / (width * 1.5f);
 		}
 		else {
-
+			this.factor = 2f;
 			return (hitLeftsensorUp.distance + width*0.5f) / (width*1.5f);
 		}
 	
@@ -123,13 +131,13 @@ public class DriveCar : MonoBehaviour {
 			}
 		} else 
 			transform.rotation = Quaternion.Euler (new Vector3 (0, 0, transform.eulerAngles.z - ( d - angleCarAndRoad)));
-		rb.velocity = transform.up *this.speed* 2f;
-
+//		rb.velocity = transform.up *this.speed* 2f;
+		rb.velocity = transform.up *this.speed* this.factor;
 	}
 
 	void controlSpeed(){
 		Vector2 posRayUp = sensorUp.transform.position;
-		RaycastHit2D hitUp = Physics2D.Raycast (laneRight,directRoad,Mathf.Infinity,layerForbidden);
+		RaycastHit2D hitUp = Physics2D.Raycast (sensorUp.transform.position,directRoad, 10f/*Mathf.Infinity*/,layerForbidden);
 		float dev = getDeviation (0);
 		//Debug.Log ("Distance Forbidden: "+ hitUp.distance);
 
@@ -138,50 +146,102 @@ public class DriveCar : MonoBehaviour {
 		sensorLeft.transform.position = laneLeft;
 		sensorRight.transform.up = directRoad;
 		sensorRight.transform.position = laneRight;
+
+		RaycastHit2D hitRightDown = Physics2D.Raycast (laneRight,-directRoad,3f,layerForbidden);
+		RaycastHit2D hitRightUp = Physics2D.Raycast (laneRight,directRoad,Mathf.Infinity,layerForbidden);
+
 		int idFor = 0;
 		float dis = 10;
 
 		float disL = 10;
+
+		float preSpeed = this.speed;
+
 		if (hitUp) {
 			dis = hitUp.distance;
 			if (hitUp.collider.gameObject.tag == "TrafficLight") {
 				TrafficLightController traffic = (TrafficLightController)hitUp.collider.gameObject.GetComponent<TrafficLightController> ();
 				//dis = hitUp.distance;
 				this.speed = Mathf.Abs (Speed.clarify (traffic.getIdL (), traffic.getRatioTime (), dis, dev));
-
+				preSpeed = this.speed;
 				idFor = 0;
-			} else if (hitUp.collider.gameObject.tag == "ForbiddenCar" && hitUp.distance < 3f) {
+			}
+			;
+		}	//else 
+			if(hitRightUp)
+			if (hitRightUp.collider.gameObject.tag == "ForbiddenCar" && hitRightUp.distance < 3f) {
 				//this.speed = 0.75f;
-				if (hitUp.distance < 1f) {
+				Vector2 posRayLeftUp = sensorLeft.transform.position;
+				RaycastHit2D hitLeftUp = Physics2D.Raycast (laneLeft, directRoad, 12f, layerForbidden);
+				if (hitLeftUp)
+				if(hitLeftUp.collider.gameObject.tag != "TrafficLight"){
+					disL = hitLeftUp.distance;
+				/*	if (disL < 1f) {
+						disL = 0f;
+					} else {
+						disL -= 1;
+					}
+				*/	if (hitLeftUp.collider.gameObject.GetInstanceID() != hitRightUp.collider.gameObject.GetInstanceID()) {
+						//Debug.Log ("2 Forbidden! " + hitRightUp.collider.gameObject.GetInstanceID() + " - " + hitLeftUp.collider.gameObject.name);
+						hitRightUp.collider.gameObject.GetComponent<ForbiddenCar> ().stopCar ();
+					}
+				}
+			/*	if (hitRightUp.distance < 1f) {
+				//	dis = 0f;
+				//	disL -= dis;
 					dis = 0f;
 				} else {
-					dis = hitUp.distance - 1f;
+					dis = hitRightUp.distance - 1f;
 				}
-				Vector2 posRayLeftUp = sensorLeft.transform.position;
-				RaycastHit2D hitLeftUp = Physics2D.Raycast (laneLeft, directRoad, Mathf.Infinity, layerForbidden);
-				if(hitLeftUp)
-				if (hitLeftUp.collider.gameObject.tag == "ForbiddenCar") {
+			*/	
+			Debug.Log ("Space: " + (disL - dis) + " - " + disL + " - " + dis);
+		/*		if (hitLeftUp.collider.gameObject.tag == "ForbiddenCar") {
 					if (hitLeftUp.distance > 1f)
 						hitLeftUp.distance -= 1f;
 					else
 						hitLeftUp.distance = 0f;
-					disL = hitLeftUp.distance;
+				//	disL = hitLeftUp.distance;
 
 				//	Debug.Log ("Left Forbidden: " + hitLeftUp.distance);
-				} else {
-					//Debug.Log ("No Left Forbidden");
 				}
-			//	this.speed = 0.85f;
+		*/	//	this.speed = 0.8f;
 				this.speed = SpeedForbidden.clarify (dev,dis,disL);
+		//	Debug.Log ("speed : " + this.speed);
 				idFor = 1;
 			} else {
 				//Debug.Break ();
 			}
-		} else {
-			//Debug.Log ("No Forbidden");
-			//Debug.Break ();
-		}
+	//	} else {
+			
+	//	}
 
+		if (hitRightDown) {
+			//if(!hitRightUp)
+			if (hitRightDown.collider.gameObject.tag == "ForbiddenCar") {
+				//Debug.Log ("Right down distance : " + hitRightDown.distance);
+				if (hitRightDown.distance <= 1f) {
+					hitRightDown.distance = 0f;
+				} else {
+					hitRightDown.distance -= 1f;
+				};
+	//			this.speed = SpeedForbidden.clarify (dev, hitRightDown.distance, 7f);
+
+				if (hitUp) {
+					if (hitUp.collider.gameObject.tag != "TrafficLight") {
+						this.speed = SpeedForbidden.clarify (dev, hitRightDown.distance, 20f); //preSpeed;
+						//Debug.Log ("Right Down 101: " + hitUp.collider.gameObject.name);
+					} else {
+						//Debug.Log ("Right Down 102: " + hitUp.collider.gameObject.name);
+						idFor = 1;
+						//this.speed = preSpeed;
+					}
+				} else {
+					//Debug.Log ("Right Down 2 ");
+					this.speed = SpeedForbidden.clarify (dev, hitRightDown.distance, 20f);
+				}
+			};
+		};
+			
 		dev = getDeviation (idFor);
 		steer (idFor,dev,dis,disL);
 	}

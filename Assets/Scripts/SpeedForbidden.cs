@@ -13,7 +13,7 @@ public static class SpeedForbidden {
 	static void setParam(float de_,float diR_,float diL_){
 		burning = 0f;
 		de = de_;
-		diR = diR_;
+		diR = diR_ - 1;
 		diL = diL_ - diR_;
 	}
 
@@ -47,7 +47,7 @@ public static class SpeedForbidden {
 		float r2 = 1f;
 		return (r1 + r2) / 2f;
 	}
-
+	/*
 	static float getRule01(){
 		float uDe = Deviation.uFL (de);
 		float uDiR = Distance.uN (diR);
@@ -55,7 +55,7 @@ public static class SpeedForbidden {
 		float a = Mathf.Min (uDe, Mathf.Min(uDiR,uDiL));
 		float b = uDe * uDiR * uDiL;
 		burning += b;
-		return b * slow (a);
+		return b * medium (a);//slow (a);
 	}
 
 	static float getRule02(){
@@ -85,7 +85,7 @@ public static class SpeedForbidden {
 		float a = Mathf.Min (uDe, Mathf.Min(uDiR,uDiL));
 		float b = uDe * uDiR * uDiL;
 		burning += b;
-		return b * slow (a);
+		return b * medium (a);//slow (a);
 	}
 
 	static float getRule05(){
@@ -95,7 +95,7 @@ public static class SpeedForbidden {
 		float a = Mathf.Min (uDe, Mathf.Min(uDiR,uDiL));
 		float b = uDe * uDiR * uDiL;
 		burning += b;
-		return b * slow (a);
+		return b * medium (a); //slow (a);
 	}
 
 	static float getRule06(){
@@ -116,63 +116,86 @@ public static class SpeedForbidden {
 		return b * stop (a);
 	}
 
-/*	static float getRule06(){
+	static float getRule08(){
+		float uDiL = Distance.uF (diL);
+		float uDiR = Distance.uN (diR);
+		float a = Mathf.Min (uDiL,uDiR);
+		float b = uDiL * uDiR;
+		burning += b;
+		return b * medium (a);
+	}
+
+	*/
+	static float getRule01(){
+		float uDiR = Distance.uN (diR);
+		float uDiL = Distance.uF (diL);
+		float a = Mathf.Min (uDiR,uDiL);
+		float b = uDiR * uDiL;
+		burning += b;
+		return b * medium (a);//slow (a);
+	}
+
+	static float getRule02(){
 		float uDe = Deviation.uFL (de);
 		float uDiR = Distance.uN (diR);
 		float uDiL = Distance.uM (diL);
 		float a = Mathf.Min (uDe, Mathf.Min(uDiR,uDiL));
 		float b = uDe * uDiR * uDiL;
 		burning += b;
-		return b * slow (a);
+		return b * medium (a);//slow (a);
 	}
 
-	static float getRule07(){
+	static float getRule03(){
 		float uDe = Deviation.uL (de);
 		float uDiR = Distance.uN (diR);
 		float uDiL = Distance.uM (diL);
 		float a = Mathf.Min (uDe, Mathf.Min(uDiR,uDiL));
 		float b = uDe * uDiR * uDiL;
 		burning += b;
-		return b * slow (a);
+		return b * medium (a);//slow (a);
 	}
 
-	static float getRule08(){
+	static float getRule04(){
 		float uDe = Deviation.uM (de);
 		float uDiR = Distance.uN (diR);
 		float uDiL = Distance.uM (diL);
 		float a = Mathf.Min (uDe, Mathf.Min(uDiR,uDiL));
 		float b = uDe * uDiR * uDiL;
 		burning += b;
-		return b * slower (a);
+		return b * medium (a);//slow (a);
 	}
 
-	static float getRule09(){
+	static float getRule05(){
 		float uDe = Deviation.uR (de);
 		float uDiR = Distance.uN (diR);
 		float uDiL = Distance.uM (diL);
 		float a = Mathf.Min (uDe, Mathf.Min(uDiR,uDiL));
 		float b = uDe * uDiR * uDiL;
 		burning += b;
-		return b * slower (a);
+		return b * medium (a);//slow (a);
 	}
 
-	static float getRule10(){
+	static float getRule06(){
 		float uDe = Deviation.uFR (de);
 		float uDiR = Distance.uN (diR);
 		float uDiL = Distance.uM (diL);
 		float a = Mathf.Min (uDe, Mathf.Min(uDiR,uDiL));
 		float b = uDe * uDiR * uDiL;
 		burning += b;
-		return b * slower (a);
+		return b * stop (a);//slow (a);
 	}
 
-	static float getRule11(){
+	static float getRule07(){
+	//	float uDe = Deviation.uFL (de);
 		float uDiR = Distance.uN (diR);
 		float uDiL = Distance.uN (diL);
-		float a = Mathf.Min (uDiR, uDiL);
+		float a = Mathf.Min (uDiR,uDiL);
 		float b = uDiR * uDiL;
+		Debug.Log ("Right: " + uDiR + " - Left: " + uDiL + "Space: " + diL );
+		if (b > 0) {
+			Debug.Log ("Space near: " + diL);
+		}
 		burning += b;
-		return b * stop (a);
+		return b * stop (a);//slow (a);
 	}
-*/
 }

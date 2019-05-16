@@ -1,17 +1,20 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\DriveCar.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Sensor.cs">
     <Files>
-      <File FileName="Assets\Scripts\MainController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\MainController.cs" Line="11" Column="2" />
       <File FileName="Assets\Scripts\DriveCar.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\ForbiddenCar.cs" Line="82" Column="46" />
-      <File FileName="Assets\Scripts\SteerageForbidden.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\SpeedForbidden.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\SteerageForbidden.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\ForbiddenCar.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Destination.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\CameraController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\CameraController.cs" Line="14" Column="17" />
       <File FileName="Assets\Scripts\CrossRoads.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Drive.cs" Line="195" Column="66" />
-      <File FileName="Assets\Scripts\SpeedFob.cs" Line="37" Column="35" />
+      <File FileName="Assets\Scripts\Drive.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\SpeedFob.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\TrafficLightController.cs" Line="34" Column="1" />
+      <File FileName="Assets\Scripts\Sensor.cs" Line="7" Column="2" />
+      <File FileName="C:\Users\Dell\AppData\Local\Unity\cache\packages\packages.unity.com\com.unity.cinemachine@2.2.8\Runtime\Behaviours\CinemachineVirtualCamera.cs" Line="254" Column="66" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -18,6 +18,9 @@ public class Destination : MonoBehaviour {
 
 	void OnMouseDown(){
 		Debug.Log ("Click on Realmadrid: " + this.name);
+		if (Shader.GetGlobalInt ("start") == 0) {
+			Shader.SetGlobalInt ("start", 1);
+		}
 		setRoad ();
 	}
 
