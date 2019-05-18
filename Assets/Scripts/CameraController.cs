@@ -22,7 +22,7 @@ public class CameraController : MonoBehaviour {
 		l = Input.GetAxis ("Mouse ScrollWheel");
 		horizontal = Input.GetAxis ("Horizontal");
 		vertical = Input.GetAxis ("Vertical");
-		cam.orthographicSize += l*10;
+		cam.orthographicSize -= l*10;
 		transform.position = transform.position + new Vector3 (horizontal*5, vertical*5,0);
 	}
 		

@@ -126,7 +126,7 @@ public static class SteerageForbidden {
 		float a = Mathf.Min (uDe, uDiR,uDiL);
 		float b = uDe * uDiR*uDiL;
 		burning += b;
-		return b * Steerage.straight (a);
+		return b * Steerage.hardLeft (a);
 	}
 
 	static float getRule11(){

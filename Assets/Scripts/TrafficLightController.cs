@@ -14,10 +14,11 @@ public class TrafficLightController : MonoBehaviour {
 	int sumTimeLight = 0;
 	// Use this for initialization
 	void Start () {
-		timeLights [0] = new TimeLight (thresholdLight[0], startPoint[0]);
-		timeLights [1] = new TimeLight (thresholdLight[1], startPoint[1]);
-		timeLights [2] = new TimeLight (thresholdLight[2], startPoint[2]);
+		timeLights [0] = new TimeLight (thresholdLight[0], Random.Range(1,thresholdLight[0]-1));
+		timeLights [1] = new TimeLight (thresholdLight[1], Random.Range(1,thresholdLight[1]-1));
+		timeLights [2] = new TimeLight (thresholdLight[2], Random.Range(1,thresholdLight[2]-1));
 		sumTimeLight += timeLights [0].threshold + timeLights [1].threshold + timeLights [2].threshold-3;
+		idL = Random.Range (0, 3);
 		StartCoroutine (ControllLight ());
 	}
 	

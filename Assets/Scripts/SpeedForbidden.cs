@@ -13,8 +13,8 @@ public static class SpeedForbidden {
 	static void setParam(float de_,float diR_,float diL_){
 		burning = 0f;
 		de = de_;
-		diR = diR_ - 1;
-		diL = diL_ - diR_;
+		diR = diR_;
+		diL = diL_;
 	}
 
 	public static float clarify(float de_, float diR_,float diL_){
@@ -191,11 +191,11 @@ public static class SpeedForbidden {
 		float uDiL = Distance.uN (diL);
 		float a = Mathf.Min (uDiR,uDiL);
 		float b = uDiR * uDiL;
-		Debug.Log ("Right: " + uDiR + " - Left: " + uDiL + "Space: " + diL );
+	/*	Debug.Log ("Right: " + uDiR + " - Left: " + uDiL + "Space: " + diL );
 		if (b > 0) {
 			Debug.Log ("Space near: " + diL);
 		}
-		burning += b;
+	*/	burning += b;
 		return b * stop (a);//slow (a);
 	}
 }

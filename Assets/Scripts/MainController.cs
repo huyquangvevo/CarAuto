@@ -7,10 +7,13 @@ public class MainController : MonoBehaviour {
 
 	public GameObject car;
 	public GameObject forCar;
+	public GameObject forCarNotMove;
 
 	public GameObject[] listCrossRoads;
 
 	public GameObject camVM;
+
+	//int countClick = 0;
 
 	// Use this for initialization
 	void Awake(){
@@ -25,14 +28,16 @@ public class MainController : MonoBehaviour {
 		if (Shader.GetGlobalInt ("start") == 1) {
 			if (!camVM.activeInHierarchy) {
 				camVM.SetActive (true);
-			};
-			if (Input.GetMouseButtonDown (0)) {
-				Debug.Log ("Pressed primary button");
-				createForbidden ();
-			} else if (Input.GetMouseButtonDown (1)) {
-				Debug.Log ("Pressed secornd button");
-			} else if (Input.GetMouseButtonDown (2)) {
-				Debug.Log ("Pressed middle click");
+			} else {
+				if (Input.GetMouseButtonDown (0)) {
+					Debug.Log ("Pressed primary button");
+					createForbidden (1);
+				} else if (Input.GetMouseButtonDown (1)) {
+					Debug.Log ("Pressed secornd button");
+					createForbidden (0);
+				} else if (Input.GetMouseButtonDown (2)) {
+					Debug.Log ("Pressed middle click");
+				}
 			}
 		}
 
@@ -41,13 +46,17 @@ public class MainController : MonoBehaviour {
 		}
 	}
 
-	void createForbidden(){
+	void createForbidden(int mode){
 		Vector2 mousePos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 
 		//Debug.Log ("Mouse Possition" + mousePos);
 
-		float zAngle = Vector2.SignedAngle (car.GetComponent<DriveCar> ().directRoad, Vector2.up);
-
-		Instantiate (forCar, mousePos, Quaternion.Euler(new Vector3(0,0,zAngle)));
+		//float zAngle = Vector2.SignedAngle (car.GetComponent<DriveCar> ().directRoad, Vector2.up);
+		float zAngle = car.transform.eulerAngles.z;
+		if(mode == 1)
+			Instantiate (forCar, mousePos, Quaternion.Euler(new Vector3(0,0,zAngle)));
+		else 
+			Instantiate (forCarNotMove, mousePos, Quaternion.Euler(new Vector3(0,0,zAngle)));
 	}
+		
 }

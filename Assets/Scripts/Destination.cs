@@ -8,6 +8,8 @@ public class Destination : MonoBehaviour {
 
 	public int[] direct;
 
+	public GameObject[] traffics;
+
 	void Start () {
 		
 	}
@@ -22,11 +24,18 @@ public class Destination : MonoBehaviour {
 			Shader.SetGlobalInt ("start", 1);
 		}
 		setRoad ();
+		setDisableTraffic ();
 	}
 
 	void setRoad(){
 		for (int i = 0; i < direct.Length; i++) {
 			listCrossRoads [i].GetComponent<CrossRoads> ().setDirect (direct[i]);
+		}
+	}
+
+	void setDisableTraffic(){
+		for (int i = 0; i < traffics.Length; i++) {
+			traffics [i].SetActive (false);
 		}
 	}
 }

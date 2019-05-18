@@ -37,7 +37,7 @@ public class DriveCar : MonoBehaviour {
 		//steer ();
 	}
 
-	void Update () {
+	void FixedUpdate () {
 		if(!isStop && (Shader.GetGlobalInt("start") == 1))
 			controlSpeed ();
 	}
@@ -139,7 +139,6 @@ public class DriveCar : MonoBehaviour {
 		Vector2 posRayUp = sensorUp.transform.position;
 		RaycastHit2D hitUp = Physics2D.Raycast (sensorUp.transform.position,directRoad, 10f/*Mathf.Infinity*/,layerForbidden);
 		float dev = getDeviation (0);
-		//Debug.Log ("Distance Forbidden: "+ hitUp.distance);
 
 		this.speed = Mathf.Abs (Speed.clarify (1, 0f, 10f, dev));
 		sensorLeft.transform.up = directRoad;
@@ -176,44 +175,38 @@ public class DriveCar : MonoBehaviour {
 				if (hitLeftUp)
 				if(hitLeftUp.collider.gameObject.tag != "TrafficLight"){
 					disL = hitLeftUp.distance;
-				/*	if (disL < 1f) {
+					if (disL < 1f) {
 						disL = 0f;
 					} else {
 						disL -= 1;
 					}
-				*/	if (hitLeftUp.collider.gameObject.GetInstanceID() != hitRightUp.collider.gameObject.GetInstanceID()) {
+					if (hitLeftUp.collider.gameObject.GetInstanceID() != hitRightUp.collider.gameObject.GetInstanceID()) {
 						//Debug.Log ("2 Forbidden! " + hitRightUp.collider.gameObject.GetInstanceID() + " - " + hitLeftUp.collider.gameObject.name);
-						hitRightUp.collider.gameObject.GetComponent<ForbiddenCar> ().stopCar ();
+					//	hitRightUp.collider.gameObject.GetComponent<ForbiddenCar> ().stopCar ();
 					}
 				}
-			/*	if (hitRightUp.distance < 1f) {
+				if (hitRightUp.distance < 1f) {
 				//	dis = 0f;
 				//	disL -= dis;
 					dis = 0f;
 				} else {
 					dis = hitRightUp.distance - 1f;
 				}
-			*/	
-			Debug.Log ("Space: " + (disL - dis) + " - " + disL + " - " + dis);
-		/*		if (hitLeftUp.collider.gameObject.tag == "ForbiddenCar") {
-					if (hitLeftUp.distance > 1f)
-						hitLeftUp.distance -= 1f;
-					else
-						hitLeftUp.distance = 0f;
-				//	disL = hitLeftUp.distance;
-
-				//	Debug.Log ("Left Forbidden: " + hitLeftUp.distance);
-				}
-		*/	//	this.speed = 0.8f;
-				this.speed = SpeedForbidden.clarify (dev,dis,disL);
+				
+			//Debug.Log ("Space: " + (disL - dis) + " - " + disL + " - " + dis);
+		
+			float spaceFor = hitLeftUp.distance - hitRightUp.distance;
+			spaceFor = disL - dis;
+			if (spaceFor < 1f) {
+				spaceFor = 0f;
+			}
+			dev = getDeviation (1);
+			this.speed = SpeedForbidden.clarify (dev,dis,spaceFor);
+			//	this.speed = 0.8f;
+		//		this.speed = SpeedForbidden.clarify (dev,dis,disL);
 		//	Debug.Log ("speed : " + this.speed);
 				idFor = 1;
-			} else {
-				//Debug.Break ();
-			}
-	//	} else {
-			
-	//	}
+			} 
 
 		if (hitRightDown) {
 			//if(!hitRightUp)
@@ -232,7 +225,9 @@ public class DriveCar : MonoBehaviour {
 						//Debug.Log ("Right Down 101: " + hitUp.collider.gameObject.name);
 					} else {
 						//Debug.Log ("Right Down 102: " + hitUp.collider.gameObject.name);
-						idFor = 1;
+					//	idFor = 1;
+						if(hitUp.distance > 4f)
+							this.speed = SpeedForbidden.clarify (dev, hitRightDown.distance, 20f);
 						//this.speed = preSpeed;
 					}
 				} else {
