@@ -103,6 +103,10 @@ public class ForbiddenCar : MonoBehaviour {
 		float dev = calculateDeviation ();
 		Vector2 posRayUp = sensorUpFor.transform.position;
 		RaycastHit2D hitUp = Physics2D.Raycast(posRayUp,transform.up,Mathf.Infinity,layerForbidden);
+		RaycastHit2D hitUpCar = Physics2D.Raycast (posRayUp, transform.up, 0.3f, layerCar);
+		if (hitUpCar) {
+			this.factor = 0f;
+		}
 
 		this.speed = Mathf.Abs (Speed.clarify(1,0f,10f,dev));
 
